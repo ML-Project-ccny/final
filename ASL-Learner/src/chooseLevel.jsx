@@ -112,9 +112,16 @@ function ChooseLevel(){
         navigate('/Login');
     }
 
+    function navigateInfo(word, level){
+        let up_word = word.toUpperCase()
+        const arr_word = up_word.split("")
+        navigate('/Info', {state : {email: username, password, word: arr_word, level, hand}});
+    }
+
     return (
         <div className='cont'>
             <Button id='acc' className='account' onClick={navigateSignIn}>Sign In</Button>
+            <Button id='acc' className='account' onClick={navigateInfo}>User Info</Button>
             <div className='hand'>
                     <h4 className='question'>  Are you left or right handed? </h4>
                     <DropdownButton className='dropDown' id="dropdown-basic-button" title="Right ">

@@ -10,7 +10,7 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    const navigategame = () =>{
+    const navigatelevel = () =>{
         navigate('/level',{state:{username:email,password}});
     }
 
@@ -100,7 +100,7 @@ const Login = () => {
                                 value={password}
                                 required
                             />
-                            <button onClick={navigategame}>Sign In</button>
+                            <button onClick={navigatelevel}>Sign In</button>
                         </form>
                         <p>
                             Need an Account?<br />
