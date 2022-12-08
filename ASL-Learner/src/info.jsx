@@ -21,10 +21,6 @@ function Info (){
         navigate('/level',{state:{username:email, password}});
     }
 
-    const navigateGame= () =>{
-        navigate('/game', {state : {word, level, username: email, password, hand}});
-    }
-
     const navigateLogin= () =>{
         navigate('/Login');
     }
@@ -92,10 +88,10 @@ function Info (){
                             }
                         })}
 
-                        <button onClick={navigateLogin} class="button-90" >Username: {email}</button>
+                        <button  class="button-90" >Username: {email}</button>
                         <button onClick={navigateChooselevel} class="button-90" role="button">Level Page</button>
                        
-                        <button onClick={navigateGame} class="button-90" role="button">Game Page</button>
+                        <button onClick={navigateLogin} class="button-90" role="button">Log Out</button>
 
                         
                         
