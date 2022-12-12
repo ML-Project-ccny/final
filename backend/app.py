@@ -8,6 +8,8 @@ import torchvision.transforms as tt
 import numpy as np
 from PIL import Image
 from collections import defaultdict
+from rembg import remove
+import torch.nn.functional as nnf
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
@@ -63,20 +65,24 @@ def index():
         new_image = new_image.transpose(method=Image.FLIP_LEFT_RIGHT)
     tfms = tt.Compose([tt.Resize((200, 200)),
                         tt.ToTensor()])
-
-    img_transform = tfms(new_image)
+    rembg_image = remove(new_image)
+    img_transform = tfms(rembg_image)
     img_transform.unsqueeze_(0)
 
     img_transform = img_transform[:,:3, :, :]
     
     res = pytorch_model(img_transform)
 
+    res = nnf.softmax(res,dim=1)
+    alphabet_idx = ALPHABET.index((data['letter']).lower())
+    arr = res.tolist()
+
     value = torch.max(res,dim=1)
     number = value.values.tolist()
     idx = value.indices.tolist()
     print(ALPHABET[idx[0]])
 
-    return {"letter":ALPHABET[idx[0]],"value":number[0]}
+    return {"letter":ALPHABET[idx[0]],"value":arr[0][alphabet_idx]*100}
 
 @app.route('/user',methods=['POST','GET'])
 def user():

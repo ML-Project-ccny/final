@@ -37,10 +37,8 @@ function Game(){
                 const ctx = canvasElement.getContext("2d");
                 ctx.drawImage(image,0,0)
                 let imgData = ctx.getImageData(0,0,WIDTH,HEIGHT).data
-                let res = await runModel(Array.prototype.slice.call(imgData),Math.floor(HEIGHT),Math.floor(WIDTH),curr)
-                if (res ){
-                    curr += 1
-                }
+                curr = await runModel(Array.prototype.slice.call(imgData),Math.floor(HEIGHT),Math.floor(WIDTH),curr)
+
             },3000)
         })
         if (imgRef.current){
@@ -119,9 +117,9 @@ function Game(){
         }
         if (res.data.letter.toUpperCase() == word[count]){
             changeLetter(count)
-            return true
+            return count + 1
         }
-        return false
+        return count
     }
     return (
         <div className='gamepage'>
