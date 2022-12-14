@@ -15,6 +15,7 @@ function Game(){
 
 
     useEffect( () => {
+        console.log(word,level,username,password,hand)
         const webcamElement = document.getElementById('webcam');
         const canvasElement = document.getElementById('canvas');
         const webcam = new Webcam(webcamElement, 'user', canvasElement)
@@ -80,7 +81,7 @@ function Game(){
                 })
             }
             //navigate
-            navigate('/level',{state :{username,password}});
+            navigate('/level',{state :{email:username,password}});
         }
         
     }

@@ -108,7 +108,7 @@ function ChooseLevel({email, setUser, password, setPwd}){
     function navigateGame(word,level){
         let up_word = word.toUpperCase()
         const arr_word = up_word.split("")
-        navigate('/game',{state : {word:arr_word,level,username: email,password,hand}});
+        navigate('/game',{state : {word:arr_word,level,username:email,password,hand}});
 
     }
 
@@ -123,7 +123,7 @@ function ChooseLevel({email, setUser, password, setPwd}){
         navigate('/Login');
     }
 
-    function navigateInfo(word, level){
+    function navigateInfo(){
         navigate('/Info', {state : {email}});
     }
 
