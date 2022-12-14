@@ -17,6 +17,7 @@ import { useState } from 'react';
 function App() {
   const [email, setUser] = useState('');
   const [password, setPwd] = useState('');
+  //const [username, pass] = useState(null);
 
   return (
     <div className="App">
@@ -27,12 +28,12 @@ function App() {
         }
       `}</style>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home email={email} setUser={setUser} password={password} setPwd={setPwd}/>} />
         <Route path="/about" element={<About />} />
         <Route path= "/choosehand" element={<Choosehand />}/>
         <Route path= "/webcams" element = {<Webcams />}/>
         <Route path="/project" element={<Project />} />
-        <Route path="/level" element={<ChooseLevel />} />
+        <Route path="/level" element={<ChooseLevel email={email} setUser={setUser} password={password} setPwd={setPwd}/>} />
         <Route path="/game" element={<Game />} />
         <Route path="/Login" element={<Login email={email} setUser={setUser} password={password} setPwd={setPwd}/>} />
         <Route path="/Register" element={<Register />} />

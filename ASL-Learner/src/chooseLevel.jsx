@@ -6,31 +6,34 @@ import Button from 'react-bootstrap/Button';
 import {useNavigate,useLocation} from 'react-router-dom';
 import axios from 'axios';
 
-function ChooseLevel(){
+function ChooseLevel({email, setUser, password, setPwd}){
 
     const {state} = useLocation();
-    const {username,password} = state
+    //const {username,password} = state
     const [words,setWords] = useState([])
     const [hand,setHand] = useState('right')
     const [complete,setComplete] = useState([])
+    //const [newUser, setUser] =useState('')
+    
 
     const navigate = useNavigate();
     
     useEffect( () => {
         getWords()
-        if(username){
+        if(email){
             document.getElementById('acc').innerHTML = 'Sign out'
             document.getElementById('acc2').removeAttribute("hidden")
+            document.getElementById('acc1').removeAttribute("hidden")
         }
     },[])
 
     async function getWords(){
         // if user is signed in 
         let arrWords = []
-        console.log(username,password)
-        if (username !== null){
+        console.log(email,password)
+        if (email !== null){
             const body = {
-                email:username
+                email
             }
             await axios({
                 method: 'post',
@@ -105,7 +108,7 @@ function ChooseLevel(){
     function navigateGame(word,level){
         let up_word = word.toUpperCase()
         const arr_word = up_word.split("")
-        navigate('/game',{state : {word:arr_word,level,username,password,hand}});
+        navigate('/game',{state : {word:arr_word,level,username: email,password,hand}});
 
     }
 
@@ -113,13 +116,21 @@ function ChooseLevel(){
         navigate('/Login');
     }
 
+
+    function navigateLogout(){
+        setUser(null)
+        setPwd(null)
+        navigate('/Login');
+    }
+
     function navigateInfo(word, level){
-        navigate('/Info', {state : {email:username}});
+        navigate('/Info', {state : {email}});
     }
 
     return (
         <div className='cont'>
             <Button id='acc' className='account' onClick={navigateSignIn}>Sign In</Button>
+            <Button id='acc1' className='account' hidden="hidden" onClick={navigateLogout}>Sign Out</Button>
             <Button id='acc2' className='account' hidden="hidden" onClick={navigateInfo}>User Info</Button>
             <div className='hand'>
                     <h4 className='question'>  Are you left or right handed? </h4>

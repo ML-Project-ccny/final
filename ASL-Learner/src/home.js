@@ -3,12 +3,18 @@ import './home.css';
 import {useNavigate} from 'react-router-dom';
 import img1 from './images/Inked268148-P5GZPM-683.jpg';
 import img2 from './images/istockphoto-1364814067-612x612.jpg'
-function Home({username, setUser, password, setPwd}){
+import { useEffect } from "react";
+function Home({email, setUser, password, setPwd}){
 
+    useEffect( () => {
+        setUser(null)
+        setPwd(null)
+    },[])
     const navigate = useNavigate();
 
     const navigateChoosehand = () =>{
-        navigate('/level',{state:{username:null,password:null}});
+
+        navigate('/level',{state:{email,password}});
     }
 
     return (

@@ -14,7 +14,7 @@ const Login = ({email, setUser, password, setPwd}) => {
 
     const navigategame = () =>{
         
-        navigate('/level',{state:{username:email,password}, setUser});
+        navigate('/level',{state:{email,password}});
     }
 
     const navigateHome = () =>{
