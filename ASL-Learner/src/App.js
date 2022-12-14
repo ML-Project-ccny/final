@@ -36,7 +36,7 @@ function App() {
         <Route path="/level" element={<ChooseLevel email={email} setUser={setUser} password={password} setPwd={setPwd}/>} />
         <Route path="/game" element={<Game />} />
         <Route path="/Login" element={<Login email={email} setUser={setUser} password={password} setPwd={setPwd}/>} />
-        <Route path="/Register" element={<Register />} />
+        <Route path="/Register" element={<Register email={email} setUser={setUser} password={password} setPwd={setPwd}/>} />
         <Route path="/Info" element={<Info email={email} setUser={setUser} password={password} setPwd={setPwd}/>} />
 
       </Routes>

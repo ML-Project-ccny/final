@@ -11,15 +11,15 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 //const REGISTER_URL = '/register';
 const REGISTER_URL = 'http://localhost:5000/user';
 
-const Register = () => {
+const Register = ({email, setUser, password, setPwd}) => {
     const userRef = useRef();
     const errRef = useRef();
 
-    const [email, setUser] = useState('');
+    //const [email, setUser] = useState('');
     const [validName, setValidName] = useState(false);
     const [userFocus, setUserFocus] = useState(false);
 
-    const [password, setPwd] = useState('');
+    //const [password, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
     const [pwdFocus, setPwdFocus] = useState(false);
 
@@ -33,12 +33,9 @@ const Register = () => {
     const navigate = useNavigate();
 
     const navigategame = () =>{
-        navigate('/level',{state:{username:email,password}});
+        navigate('/level',{state:{email,password}});
     }
 
-    const navigateHome = () =>{
-        navigate('/home');
-    }
     
     async function register(){
         console.log(email, password)
@@ -187,7 +184,6 @@ const Register = () => {
                         </p>
 
                         <button disabled={!validName || !validPwd || !validMatch ? true : false} onClick={register}>Sign Up</button>
-                        <button onClick={navigateHome}>Home</button>
                     </form>
                     <p>
                         Already registered?<br />
