@@ -12,8 +12,12 @@ import Game from './game'
 import Login from './Login';
 import Register from './Register';
 import Info from './info';
+import { useState } from 'react';
 
 function App() {
+  const [email, setUser] = useState('');
+  const [password, setPwd] = useState('');
+
   return (
     <div className="App">
         <style jsx global>{`
@@ -30,9 +34,9 @@ function App() {
         <Route path="/project" element={<Project />} />
         <Route path="/level" element={<ChooseLevel />} />
         <Route path="/game" element={<Game />} />
-        <Route path="/Login" element={<Login />} />
+        <Route path="/Login" element={<Login email={email} setUser={setUser} password={password} setPwd={setPwd}/>} />
         <Route path="/Register" element={<Register />} />
-        <Route path="/Info" element={<Info />} />
+        <Route path="/Info" element={<Info email={email} setUser={setUser} password={password} setPwd={setPwd}/>} />
 
       </Routes>
     </div>

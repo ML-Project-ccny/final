@@ -3,7 +3,7 @@ import './home.css';
 import {useNavigate} from 'react-router-dom';
 import img1 from './images/Inked268148-P5GZPM-683.jpg';
 import img2 from './images/istockphoto-1364814067-612x612.jpg'
-function Home(){
+function Home({username, setUser, password, setPwd}){
 
     const navigate = useNavigate();
 

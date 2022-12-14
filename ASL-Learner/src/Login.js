@@ -6,20 +6,28 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 //const LOGIN_URL = '/auth';
 
-const Login = () => {
+const Login = ({email, setUser, password, setPwd}) => {
+
+
 
     const navigate = useNavigate();
 
-    const navigatelevel = () =>{
-        navigate('/level',{state:{username:email,password}});
+    const navigategame = () =>{
+        
+        navigate('/level',{state:{username:email,password}, setUser});
     }
+
+    const navigateHome = () =>{
+        navigate('/');
+    }
+
 
     //const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
-    const [email, setUser] = useState('');
-    const [password, setPwd] = useState('');
+    //const [email, setUser] = useState('');
+    //const [password, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
@@ -100,7 +108,8 @@ const Login = () => {
                                 value={password}
                                 required
                             />
-                            <button onClick={navigatelevel}>Sign In</button>
+                            <button onClick={navigategame}>Sign In</button>
+                            <button onClick={navigateHome}>Home</button>
                         </form>
                         <p>
                             Need an Account?<br />

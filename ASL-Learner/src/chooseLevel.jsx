@@ -20,6 +20,7 @@ function ChooseLevel(){
         getWords()
         if(username){
             document.getElementById('acc').innerHTML = 'Sign out'
+            document.getElementById('acc2').removeAttribute("hidden")
         }
     },[])
 
@@ -113,15 +114,13 @@ function ChooseLevel(){
     }
 
     function navigateInfo(word, level){
-        let up_word = word.toUpperCase()
-        const arr_word = up_word.split("")
-        navigate('/Info', {state : {email: username, password, word: arr_word, level, hand}});
+        navigate('/Info', {state : {email:username}});
     }
 
     return (
         <div className='cont'>
             <Button id='acc' className='account' onClick={navigateSignIn}>Sign In</Button>
-            <Button id='acc' className='account' onClick={navigateInfo}>User Info</Button>
+            <Button id='acc2' className='account' hidden="hidden" onClick={navigateInfo}>User Info</Button>
             <div className='hand'>
                     <h4 className='question'>  Are you left or right handed? </h4>
                     <DropdownButton className='dropDown' id="dropdown-basic-button" title="Right ">

@@ -36,6 +36,9 @@ const Register = () => {
         navigate('/level',{state:{username:email,password}});
     }
 
+    const navigateHome = () =>{
+        navigate('/home');
+    }
     
     async function register(){
         console.log(email, password)
@@ -184,6 +187,7 @@ const Register = () => {
                         </p>
 
                         <button disabled={!validName || !validPwd || !validMatch ? true : false} onClick={register}>Sign Up</button>
+                        <button onClick={navigateHome}>Home</button>
                     </form>
                     <p>
                         Already registered?<br />
