@@ -21,7 +21,7 @@ function ChooseLevel({email, setUser, password, setPwd}){
     useEffect( () => {
         getWords()
         if(email){
-            document.getElementById('acc').innerHTML = 'Sign out'
+            document.getElementById('acc').setAttribute("hidden", "hidden")
             document.getElementById('acc2').removeAttribute("hidden")
             document.getElementById('acc1').removeAttribute("hidden")
         }
