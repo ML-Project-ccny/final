@@ -9,12 +9,40 @@ import axios from 'axios';
 const Login = ({email, setUser, password, setPwd}) => {
 
 
-
+    const [emails, setUsers] = useState('');
+    const [passwords, setPwds] = useState('');
     const navigate = useNavigate();
 
-    const navigategame = () =>{
-        
+    const navigatelevel = () =>{
         navigate('/level',{state:{email,password}});
+    }
+
+    async function login() {
+        navigatelevel()
+        console.log(email, password)
+
+        const body = {
+            email,
+            password
+        }
+
+        console.log(body)
+        const res = await axios({
+            method: 'GET',
+            url: 'http://localhost:5000/user',
+            data: body,
+            headers: {
+                'Content-Type': 'text/plain;charset=utf-8',
+            },
+        })
+        console.log(res.data)
+        console.log(res.data['email'])
+        if (res.data['email'] === email){
+            navigatelevel()
+            setSuccess(true)
+                
+        }
+        
     }
 
     const navigateHome = () =>{
@@ -26,31 +54,10 @@ const Login = ({email, setUser, password, setPwd}) => {
     const userRef = useRef();
     const errRef = useRef();
 
-    //const [email, setUser] = useState('');
-    //const [password, setPwd] = useState('');
+    
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
-    
-    async function login(){
-        console.log(email, password)
-
-        const res = await axios({
-            method: 'GET',
-            url: 'http://localhost:5000/user',
-            headers: {
-                'Content-Type': 'text/plain;charset=utf-8',
-            },
-        })
-        if (email === res.data['email'] && password === res.data['password']){
-            setSuccess(true)
-                
-        }
-        else{
-            setErrMsg('Invalid Information')
-        }
-    
-    }
 
     useEffect(() => {
         userRef.current.focus();
@@ -108,7 +115,7 @@ const Login = ({email, setUser, password, setPwd}) => {
                                 value={password}
                                 required
                             />
-                            <button onClick={navigategame}>Sign In</button>
+                            <button onClick={login}>Sign In</button>
                             <button onClick={navigateHome}>Home</button>
                         </form>
                         <p>

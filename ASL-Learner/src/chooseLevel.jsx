@@ -35,22 +35,44 @@ function ChooseLevel({email, setUser, password, setPwd}){
             const body = {
                 email
             }
-            await axios({
-                method: 'post',
-                url: 'http://localhost:5000/words',
-                data: body,
-                headers: {
-                    'Content-Type': 'text/plain;charset=utf-8',
-                },
-            }).then((res)=>{
-                console.log(res.data)
-                Object.keys(res.data).forEach( (num) =>{
-                    console.log(res.data[num])
-                    arrWords.push(res.data[num])
-                } )
-                setWords(arrWords)
-                getCompletenes(arrWords)
-            })
+            try{
+                await axios({
+                    method: 'post',
+                    url: 'http://localhost:5000/words',
+                    data: body,
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8',
+                    },
+                }).then((res)=>{
+                    console.log(res.data)
+                    Object.keys(res.data).forEach( (num) =>{
+                        console.log(res.data[num])
+                        arrWords.push(res.data[num])
+                    } )
+                    setWords(arrWords)
+                    getCompletenes(arrWords)
+                })
+            }
+            catch{
+                fetch('http://localhost:5000/allWords')
+                .then((response) => response.json())
+                .then( (res) => {
+                    console.log(res)
+                    Object.keys(res).forEach( (num) =>{
+                        console.log(res[num])
+                        arrWords.push(res[num])
+                    } )
+                    setWords(arrWords)
+                    console.log(arrWords)
+                    getCompletenes(arrWords)
+                })
+
+                
+                document.getElementById('acc').removeAttribute("hidden")
+                document.getElementById('acc1').setAttribute("hidden", "hidden")
+                document.getElementById('acc2').setAttribute("hidden", "hidden")
+                
+            }
         }else{
             fetch('http://localhost:5000/allWords')
             .then((response) => response.json())
