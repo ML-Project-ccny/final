@@ -20,6 +20,16 @@
 ### Software Design
 
 ### ML Model Design
+The ML model used for gesture classification is a modified ResNet152. The output layer of the model was modified to produce 26 classes which correspond to 26 letters in the alphabet. The model is trained for one epoch with ResNet152 layers frozen and then for an additional epoch with all layers unfrozen. 
+
+#### Hyperparameters
+```
+epochs = 1
+max_lr = 1e-4
+grad_clip = 0.1
+weight_decay = 1e-4
+opt_func = torch.optim.Adam
+```
 
 ### ML Dataset Description
 
