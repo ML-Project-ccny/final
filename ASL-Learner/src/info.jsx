@@ -3,10 +3,10 @@ import './info.css';
 import {useLocation, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 
-function Info ({email, setUser, password, setPwd}){
+function Info (){
 
     const {state} = useLocation();
-    //const {email, password, word, level, hand} = state
+    const {email, password, word, level, hand} = state
     const [wordarr,setWordarr] = useState([])
     const [result,setResult] = useState()
     const [success, setSuccess] = useState(false);
@@ -22,11 +22,11 @@ function Info ({email, setUser, password, setPwd}){
     
 
     const navigateChooselevel = () =>{
-        navigate('/level',{state:{username:email, password}});
+        navigate('/level',{state:{email, password}});
     }
 
     const navigateLogin= () =>{
-        setUser("")
+        //setUser("")
         navigate('/Login');
     }
 

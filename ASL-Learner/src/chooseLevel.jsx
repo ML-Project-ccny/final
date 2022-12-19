@@ -6,10 +6,10 @@ import Button from 'react-bootstrap/Button';
 import {useNavigate,useLocation} from 'react-router-dom';
 import axios from 'axios';
 
-function ChooseLevel({email, setUser, password, setPwd}){
+function ChooseLevel(){
 
     const {state} = useLocation();
-    //const {username,password} = state
+    const {email,password} = state
     const [words,setWords] = useState([])
     const [hand,setHand] = useState('right')
     const [complete,setComplete] = useState([])
@@ -140,8 +140,8 @@ function ChooseLevel({email, setUser, password, setPwd}){
 
 
     function navigateLogout(){
-        setUser(null)
-        setPwd(null)
+        //setUser(null)
+        //setPwd(null)
         navigate('/Login');
     }
 

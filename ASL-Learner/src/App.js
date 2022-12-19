@@ -28,16 +28,16 @@ function App() {
         }
       `}</style>
       <Routes>
-        <Route path="/" element={<Home email={email} setUser={setUser} password={password} setPwd={setPwd}/>} />
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path= "/choosehand" element={<Choosehand />}/>
         <Route path= "/webcams" element = {<Webcams />}/>
         <Route path="/project" element={<Project />} />
-        <Route path="/level" element={<ChooseLevel email={email} setUser={setUser} password={password} setPwd={setPwd}/>} />
+        <Route path="/level" element={<ChooseLevel />} />
         <Route path="/game" element={<Game />} />
         <Route path="/Login" element={<Login email={email} setUser={setUser} password={password} setPwd={setPwd}/>} />
         <Route path="/Register" element={<Register email={email} setUser={setUser} password={password} setPwd={setPwd}/>} />
-        <Route path="/Info" element={<Info email={email} setUser={setUser} password={password} setPwd={setPwd}/>} />
+        <Route path="/Info" element={<Info />} />
 
       </Routes>
     </div>
