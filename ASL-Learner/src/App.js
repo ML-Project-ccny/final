@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import Home from './home';
-import About from './about';
 import Project from './project';
 import {Routes, Route} from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -17,7 +16,6 @@ import { useState } from 'react';
 function App() {
   const [email, setUser] = useState('');
   const [password, setPwd] = useState('');
-  //const [username, pass] = useState(null);
 
   return (
     <div className="App">
@@ -29,7 +27,6 @@ function App() {
       `}</style>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
         <Route path= "/choosehand" element={<Choosehand />}/>
         <Route path= "/webcams" element = {<Webcams />}/>
         <Route path="/project" element={<Project />} />
